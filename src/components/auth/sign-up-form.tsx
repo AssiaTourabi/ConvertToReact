@@ -72,34 +72,37 @@ export function SignUpForm(): React.JSX.Element {
 
   return (
     <Stack spacing={3}>
-      <Stack spacing={1}>
-      <Typography variant="h4" sx={{ fontFamily: 'OCR A Std, monospace' }}>Sign Up</Typography>
-        <Typography color="text.secondary" variant="body2">
+      <Stack spacing={1} >
+      <Typography variant="h4" sx={{ fontFamily: 'Lato, sans-serif',color: "#00008B", marginLeft:'25%',marginTop:'%',fontSize:'30px'}}>Sign_Up</Typography>
+        <Typography color="text.secondary" variant="body2"  sx={{marginLeft:'25%'}} >
           Already have an account?{' '}
-          <Link component={RouterLink} href={paths.auth.signIn} underline="hover" variant="subtitle2" sx={{ color: '#333333' }}>
+          <Link component={RouterLink} href={paths.auth.signIn} underline="hover" variant="subtitle2" sx={{ color: '#1c9a8d' }}>
             Sign in
           </Link>
         </Typography>
       </Stack>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Stack spacing={2}>
-          <Controller
-            control={control}
-            name="firstName"
-            render={({ field }) => (
-              <FormControl error={Boolean(errors.firstName)}>
-                <InputLabel>First name</InputLabel>
-                <OutlinedInput {...field} label="First name" />
-                {errors.firstName ? <FormHelperText>{errors.firstName.message}</FormHelperText> : null}
-              </FormControl>
-            )}
-          />
+        <Stack spacing={2} sx={{marginLeft:'25%'}}>
+        <Controller
+  control={control}
+  name="firstName"
+  render={({ field }) => (
+    <FormControl 
+      error={Boolean(errors.firstName)} 
+      sx={{ minWidth: 120, '& .MuiInputBase-root': { height: 40 } }} // Adjust height here
+    >
+      <InputLabel sx={{marginTop:'-6px'}}>First name</InputLabel>
+      <OutlinedInput {...field} label="First name" sx={{ height: '100%' ,marginTop:'0px'}} />
+      {errors.firstName ? <FormHelperText>{errors.firstName.message}</FormHelperText> : null}
+    </FormControl>
+  )}
+/>
           <Controller
             control={control}
             name="lastName"
             render={({ field }) => (
-              <FormControl error={Boolean(errors.firstName)}>
-                <InputLabel>Last name</InputLabel>
+              <FormControl error={Boolean(errors.firstName)} sx={{ minWidth: 120, '& .MuiInputBase-root': { height: 40 } }}>
+                <InputLabel sx={{marginTop:'-6px'}}>Last name</InputLabel>
                 <OutlinedInput {...field} label="Last name" />
                 {errors.firstName ? <FormHelperText>{errors.firstName.message}</FormHelperText> : null}
               </FormControl>
@@ -109,8 +112,8 @@ export function SignUpForm(): React.JSX.Element {
             control={control}
             name="email"
             render={({ field }) => (
-              <FormControl error={Boolean(errors.email)}>
-                <InputLabel>Email address</InputLabel>
+              <FormControl error={Boolean(errors.email)} sx={{ minWidth: 120, '& .MuiInputBase-root': { height: 40 } }}>
+                <InputLabel sx={{marginTop:'-6px'}}>Email address</InputLabel>
                 <OutlinedInput {...field} label="Email address" type="email" />
                 {errors.email ? <FormHelperText>{errors.email.message}</FormHelperText> : null}
               </FormControl>
@@ -120,8 +123,8 @@ export function SignUpForm(): React.JSX.Element {
             control={control}
             name="password"
             render={({ field }) => (
-              <FormControl error={Boolean(errors.password)}>
-                <InputLabel>Password</InputLabel>
+              <FormControl error={Boolean(errors.password)} sx={{ minWidth: 120, '& .MuiInputBase-root': { height: 40 } }}>
+                <InputLabel sx={{marginTop:'-6px'}}>Password</InputLabel>
                 <OutlinedInput {...field} label="Password" type="password"   />
                 {errors.password ? <FormHelperText>{errors.password.message}</FormHelperText> : null}
               </FormControl>
@@ -146,16 +149,16 @@ export function SignUpForm(): React.JSX.Element {
           />
           {errors.root ? <Alert color="error">{errors.root.message}</Alert> : null}
           <Button disabled={isPending} type="submit" variant="contained" sx={{
-    backgroundColor: 'black',
+    backgroundColor: '#34c291',
     '&:hover': {
-      backgroundColor: 'grey',
+      backgroundColor: '#378db7',
     },
   }}>
             Sign up
           </Button>
         </Stack>
       </form>
-      <Alert color="warning">alert</Alert>
+   
     </Stack>
   );
 }

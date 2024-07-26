@@ -10,13 +10,12 @@ import Divider from '@mui/material/Divider';
 import { alpha, useTheme } from '@mui/material/styles';
 import type { SxProps } from '@mui/material/styles';
 import { ArrowClockwise as ArrowClockwiseIcon } from '@phosphor-icons/react/dist/ssr/ArrowClockwise';
-import { ArrowRight as ArrowRightIcon } from '@phosphor-icons/react/dist/ssr/ArrowRight';
 import type { ApexOptions } from 'apexcharts';
 
 import { Chart } from '@/components/core/chart';
 
 export interface SalesProps {
-  chartSeries: { name: string; data: number[] }[];
+  chartSeries: { name: string; data: { x: number, y: number }[] }[];
   sx?: SxProps;
 }
 
@@ -24,24 +23,20 @@ export function Sales({ chartSeries, sx }: SalesProps): React.JSX.Element {
   const chartOptions = useChartOptions();
 
   return (
-    <Card sx={sx}>
+    <Card sx={{ ...sx, width: '900px', marginLeft: '30px' }}>
       <CardHeader
         action={
           <Button color="inherit" size="small" startIcon={<ArrowClockwiseIcon fontSize="var(--icon-fontSize-md)" />}>
             Sync
           </Button>
         }
-        title="Sales"
+        title="Nombre De patients"
+        sx={{ fontFamily: 'OCR A Std, monospace' }}
       />
       <CardContent>
-        <Chart height={350} options={chartOptions} series={chartSeries} type="bar" width="100%" />
+        <Chart height={350} options={chartOptions} series={chartSeries} type="scatter" width="100%" />
       </CardContent>
       <Divider />
-      <CardActions sx={{ justifyContent: 'flex-end' }}>
-        <Button color="inherit" endIcon={<ArrowRightIcon fontSize="var(--icon-fontSize-md)" />} size="small">
-          Overview
-        </Button>
-      </CardActions>
     </Card>
   );
 }
@@ -61,13 +56,11 @@ function useChartOptions(): ApexOptions {
       yaxis: { lines: { show: true } },
     },
     legend: { show: false },
-    plotOptions: { bar: { columnWidth: '40px' } },
     stroke: { colors: ['transparent'], show: true, width: 2 },
     theme: { mode: theme.palette.mode },
     xaxis: {
       axisBorder: { color: theme.palette.divider, show: true },
       axisTicks: { color: theme.palette.divider, show: true },
-      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
       labels: { offsetY: 5, style: { colors: theme.palette.text.secondary } },
     },
     yaxis: {

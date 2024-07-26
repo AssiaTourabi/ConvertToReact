@@ -37,12 +37,11 @@ export function UserPopover({ anchorEl, onClose, open }: UserPopoverProps): Reac
         return;
       }
 
-      // Refresh the auth state
+
       await checkSession?.();
 
-      // UserProvider, for this case, will not refresh the router and we need to do it manually
       router.refresh();
-      // After refresh, AuthGuard will handle the redirect
+
     } catch (err) {
       logger.error('Sign out error', err);
     }
@@ -68,7 +67,7 @@ export function UserPopover({ anchorEl, onClose, open }: UserPopoverProps): Reac
           <ListItemIcon>
             <GearSixIcon fontSize="var(--icon-fontSize-md)" />
           </ListItemIcon>
-          Settings
+          Paramètres
         </MenuItem>
         <MenuItem component={RouterLink} href={paths.dashboard.account} onClick={onClose}>
           <ListItemIcon>

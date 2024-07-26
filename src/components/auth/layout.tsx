@@ -19,16 +19,44 @@ export function Layout({ children }: LayoutProps): React.JSX.Element {
         flexDirection: 'column',
         gridTemplateColumns: '1fr 1fr',
         minHeight: '100%',
+        backgroundColor: '#c4c7d4',
       }}
     >
       <Box sx={{ display: 'flex', flex: '1 1 auto', flexDirection: 'column' }}>
         <Box sx={{ p: 3 }}>
-          <Box component={RouterLink} href={paths.home} sx={{ display: 'inline-block', fontSize: 0 }}>
-            <DynamicLogo colorDark="light" colorLight="dark" height={100} width={130} />
-          </Box>
+          <Box
+            component={RouterLink}
+            href={paths.home}
+            sx={{ display: 'inline-block', fontSize: 0, marginLeft: '90px', marginTop: '30px' }}
+          ></Box>
         </Box>
         <Box sx={{ alignItems: 'left', display: 'flex', flex: '1 1 auto', justifyContent: 'center', p: 3 }}>
-          <Box sx={{ maxWidth: '450px', width: '100%' }}>{children}</Box>
+          <Box
+            sx={{
+              maxWidth: '650px',
+              width: '100%',
+              height: '550px', // Keeping it square
+              marginTop: '-60px',
+              padding: '50px',
+              borderRadius: '20px', // You can adjust the border radius as needed
+              marginLeft: '120px',
+              boxShadow: '-4px 0px 6px rgba(0, 0, 0, 0.1)',
+              backgroundColor: '#f1f1ef',
+              borderRadius: '30px 0px 0px 30px',
+              border: '#5b759e 5px solid',
+
+              // Optional: add some shadow for better appearance
+            }}
+          >
+            <Box
+              component={RouterLink}
+              href={paths.home}
+              sx={{ display: 'inline-block', fontSize: 0, marginLeft: '-20px', marginTop: '-30px' }}
+            >
+              <DynamicLogo />
+            </Box>
+            {children}
+          </Box>
         </Box>
       </Box>
       <Box
@@ -43,17 +71,23 @@ export function Layout({ children }: LayoutProps): React.JSX.Element {
       >
         <Stack spacing={3}>
           <Stack spacing={1}>
-          
-            <Typography align="center" variant="subtitle1">
-             
-            </Typography>
+            <Typography align="center" variant="subtitle1"></Typography>
           </Stack>
           <Box sx={{ display: 'flex', justifyContent: 'center' }}>
             <Box
               component="img"
               alt="Widgets"
-              src="/assets/auth-widgets.png"
-              sx={{ height: 'auto', width: '100%', maxWidth: '600px' }}
+              src="/assets/auth-widgets.gif"
+              sx={{
+                height: '550px',
+                width: '100%',
+                maxWidth: '550px',
+                marginRight: '190px',
+                marginTop: '0px',
+                borderRadius: '0 30px 30px 0',
+                border: '#5b759e 5px solid',
+                borderLeft: 'none', // You can adjust the border radius as needed
+              }}
             />
           </Box>
         </Stack>

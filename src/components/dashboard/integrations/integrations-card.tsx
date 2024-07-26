@@ -46,7 +46,7 @@ export function IntegrationCard({ integration }: IntegrationCardProps): React.JS
         <Stack sx={{ alignItems: 'center' }} direction="row" spacing={1}>
           <ClockIcon fontSize="var(--icon-fontSize-sm)" />
           <Typography color="text.secondary" display="inline" variant="body2">
-            Updated {dayjs(integration.updatedAt).format('MMM D, YYYY')}
+            mise à jour {dayjs(integration.updatedAt).format('MMM D, YYYY')}
           </Typography>
         </Stack>
         <Stack sx={{ alignItems: 'center' }} direction="row" spacing={1}>

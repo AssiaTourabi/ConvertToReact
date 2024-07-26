@@ -52,9 +52,9 @@ export function ResetPasswordForm(): React.JSX.Element {
 
   return (
     <Stack spacing={4}>
-      <Typography variant="h5" sx={{ fontFamily: 'Old English Text MT, serif' }}>Reset password</Typography>
+      <Typography variant="h5" sx={{      fontFamily: 'Lato, sans-serif',color: "#00008B", marginLeft:'25%',marginTop:'12%',fontSize:'20px'}}>Reset_Password</Typography>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Stack spacing={2}>
+        <Stack spacing={2} sx={{marginLeft:'25%'}}>
           <Controller
             control={control}
             name="email"
@@ -68,12 +68,12 @@ export function ResetPasswordForm(): React.JSX.Element {
           />
           {errors.root ? <Alert color="error">{errors.root.message}</Alert> : null}
           <Button disabled={isPending} type="submit" variant="contained"   sx={{
-              backgroundColor: 'black',
+              backgroundColor: '#34c291',
               '&:hover': {
-                backgroundColor: 'grey',
+                backgroundColor: '#378db7',
               },
             }}>
-            Send recovery link
+            Envoyer le lien de récupération
           </Button>
         </Stack>
       </form>

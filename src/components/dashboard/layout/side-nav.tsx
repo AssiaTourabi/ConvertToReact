@@ -3,39 +3,44 @@
 import * as React from 'react';
 import RouterLink from 'next/link';
 import { usePathname } from 'next/navigation';
+import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import Box from '@mui/material/Box';
+import Collapse from '@mui/material/Collapse';
+import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Collapse from '@mui/material/Collapse';
-import { ExpandLess, ExpandMore } from '@mui/icons-material';
 
 import type { NavItemConfig } from '@/types/nav';
-import { isNavItemActive } from '@/lib/is-nav-item-active';
-import { navIcons } from './nav-icons';
 import { paths } from '@/paths';
+import { isNavItemActive } from '@/lib/is-nav-item-active';
 import { Logo } from '@/components/core/logo';
-import Divider from '@mui/material/Divider';
 
 import { navItems } from './config';
+import { navIcons } from './nav-icons';
 
 export function SideNav(): React.JSX.Element {
   const pathname = usePathname();
+  const [openKey, setOpenKey] = React.useState<string | null>(null);
+
+  const handleToggle = (key: string) => {
+    setOpenKey((prevOpenKey) => (prevOpenKey === key ? null : key));
+  };
 
   return (
     <Box
       sx={{
-        '--SideNav-background': 'black',
+        '--SideNav-background': '#536e92',
         '--SideNav-color': 'white',
         '--NavItem-color': 'var(--mui-palette-neutral-300)',
         '--NavItem-hover-background': 'white',
-        '--NavItem-active-background': '#333333',
-        '--NavItem-active-color': 'white',
+        '--NavItem-active-background': '#f1f1ef',
+        '--NavItem-active-color': '#546f92',
         '--NavItem-disabled-color': 'var(--mui-palette-neutral-500)',
         '--NavItem-icon-color': 'white',
-        '--NavItem-icon-active-color': 'white',
+        '--NavItem-icon-active-color': '#546f92',
         '--NavItem-icon-disabled-color': 'var(--mui-palette-neutral-600)',
-        bgcolor: 'black',
-        color: 'white',
+        bgcolor: '#11425F',
+        color: 'red',
         display: { xs: 'none', lg: 'flex' },
         flexDirection: 'column',
         height: '100%',
@@ -47,29 +52,50 @@ export function SideNav(): React.JSX.Element {
         width: 'var(--SideNav-width)',
         zIndex: 'var(--SideNav-zIndex)',
         '&::-webkit-scrollbar': { display: 'none' },
+        borderRadius: '0 20px 20px 0',
+
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
       }}
     >
       <Stack spacing={2} sx={{ p: 3 }}>
-        <Box component={RouterLink} href={paths.home} sx={{ display: 'inline-flex', marginLeft: '25%', marginTop: '-4%' }}>
+        <Box
+          component={RouterLink}
+          href={paths.home}
+          sx={{ display: 'inline-flex', marginLeft: '25%', marginTop: '-4%' }}
+        >
           <Logo color="light" height={70} width={100} />
         </Box>
       </Stack>
-      <Divider sx={{ borderColor: 'var(--mui-palette-neutral-700)' }} />
+
       <Box component="nav" sx={{ flex: '1 1 auto', p: '12px' }}>
-        {renderNavItems({ pathname, items: navItems })}
+        {renderNavItems({ pathname, items: navItems, openKey, handleToggle })}
       </Box>
-      <Divider sx={{ borderColor: 'var(--mui-palette-neutral-700)' }} />
+
       <Stack spacing={2} sx={{ p: '12px' }}></Stack>
     </Box>
   );
 }
 
-function renderNavItems({ items = [], pathname }: { items?: NavItemConfig[]; pathname: string }): React.JSX.Element {
+function renderNavItems({
+  items = [],
+  pathname,
+  openKey,
+  handleToggle,
+}: {
+  items?: NavItemConfig[];
+  pathname: string;
+  openKey: string | null;
+  handleToggle: (key: string) => void;
+}): React.JSX.Element {
   const children = items.reduce((acc: React.ReactNode[], curr: NavItemConfig): React.ReactNode[] => {
     const { key, ...item } = curr;
 
     if (item.items) {
-      acc.push(<NavItemWithDropdown key={key} pathname={pathname} {...item} />);
+      acc.push(
+        <NavItemWithDropdown key={key} pathname={pathname} openKey={openKey} handleToggle={handleToggle} {...item} />
+      );
     } else {
       acc.push(<NavItem key={key} pathname={pathname} {...item} />);
     }
@@ -95,14 +121,10 @@ function NavItem({ disabled, external, href, icon, matcher, pathname, title }: N
   return (
     <li>
       <Box
-        {...(href
-          ? {
-              component: external ? 'a' : RouterLink,
-              href,
-              target: external ? '_blank' : undefined,
-              rel: external ? 'noreferrer' : undefined,
-            }
-          : { role: 'button' })}
+        component={external ? 'a' : RouterLink}
+        href={href}
+        target={external ? '_blank' : undefined}
+        rel={external ? 'noreferrer' : undefined}
         sx={{
           alignItems: 'center',
           borderRadius: 1,
@@ -135,7 +157,13 @@ function NavItem({ disabled, external, href, icon, matcher, pathname, title }: N
         <Box sx={{ flex: '1 1 auto' }}>
           <Typography
             component="span"
-            sx={{ color: 'inherit', fontSize: '0.875rem', fontWeight: 500, lineHeight: '28px', fontFamily: 'OCR A Std, monospace' }}
+            sx={{
+              color: 'inherit',
+              fontSize: '0.875rem',
+              fontWeight: 500,
+              lineHeight: '28px',
+              fontFamily: 'OCR A Std, monospace',
+            }}
           >
             {title}
           </Typography>
@@ -147,11 +175,24 @@ function NavItem({ disabled, external, href, icon, matcher, pathname, title }: N
 
 interface NavItemWithDropdownProps extends NavItemConfig {
   pathname: string;
+  openKey: string | null;
+  handleToggle: (key: string) => void;
 }
 
-function NavItemWithDropdown({ disabled, external, href, icon, matcher, pathname, title, items }: NavItemWithDropdownProps): React.JSX.Element {
-  const [open, setOpen] = React.useState(false);
-  const handleToggle = () => setOpen(prevOpen => !prevOpen);
+function NavItemWithDropdown({
+  disabled,
+  external,
+  href,
+  icon,
+  matcher,
+  pathname,
+  title,
+  items,
+  openKey,
+  handleToggle,
+}: NavItemWithDropdownProps): React.JSX.Element {
+  const key = title; // Ensure this key is unique for each dropdown
+  const open = openKey === key;
   const active = isNavItemActive({ disabled, external, href, matcher, pathname });
   const Icon = icon ? navIcons[icon] : null;
 
@@ -159,7 +200,7 @@ function NavItemWithDropdown({ disabled, external, href, icon, matcher, pathname
     <>
       <li>
         <Box
-          onClick={handleToggle}
+          onClick={() => handleToggle(key)}
           sx={{
             alignItems: 'center',
             borderRadius: 1,
@@ -192,19 +233,23 @@ function NavItemWithDropdown({ disabled, external, href, icon, matcher, pathname
           <Box sx={{ flex: '1 1 auto' }}>
             <Typography
               component="span"
-              sx={{ color: 'inherit', fontSize: '0.875rem', fontWeight: 500, lineHeight: '28px', fontFamily: 'OCR A Std, monospace' }}
+              sx={{
+                color: 'inherit',
+                fontSize: '0.875rem',
+                fontWeight: 500,
+                lineHeight: '28px',
+                fontFamily: 'OCR A Std, monospace',
+              }}
             >
               {title}
             </Typography>
           </Box>
-          <Box sx={{ flex: '0 0 auto' }}>
-            {open ? <ExpandLess /> : <ExpandMore />}
-          </Box>
+          <Box sx={{ flex: '0 0 auto' }}>{open ? <ExpandLess /> : <ExpandMore />}</Box>
         </Box>
       </li>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <Stack component="ul" spacing={1} sx={{ listStyle: 'none', pl: 4 }}>
-          {items.map(subItem => (
+          {items.map((subItem) => (
             <NavItem key={subItem.key} pathname={pathname} {...subItem} />
           ))}
         </Stack>

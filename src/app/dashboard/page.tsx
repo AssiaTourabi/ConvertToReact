@@ -1,133 +1,174 @@
-import * as React from 'react';
-import type { Metadata } from 'next';
-import Grid from '@mui/material/Unstable_Grid2';
-import dayjs from 'dayjs';
+'use client';
 
-import { config } from '@/config';
-import { Budget } from '@/components/dashboard/overview/budget';
-import { LatestOrders } from '@/components/dashboard/overview/latest-orders';
-import { LatestProducts } from '@/components/dashboard/overview/latest-products';
-import { Sales } from '@/components/dashboard/overview/sales';
-import { TasksProgress } from '@/components/dashboard/overview/tasks-progress';
-import { TotalCustomers } from '@/components/dashboard/overview/total-customers';
-import { TotalProfit } from '@/components/dashboard/overview/total-profit';
-import { Traffic } from '@/components/dashboard/overview/traffic';
+import React, { useState } from 'react';
+import { Box, Button, Container, FormControl, Grid, Paper, TextField, Typography } from '@mui/material';
+import { styled } from '@mui/system';
+import {
+  BarElement,
+  CategoryScale,
+  Chart as ChartJS,
+  Title as ChartTitle,
+  Legend,
+  LinearScale,
+  Tooltip,
+} from 'chart.js';
+import { Bar } from 'react-chartjs-2';
 
-export const metadata = { title: `Overview | Dashboard | ${config.site.name}` } satisfies Metadata;
+ChartJS.register(CategoryScale, LinearScale, BarElement, ChartTitle, Tooltip, Legend);
 
-export default function Page(): React.JSX.Element {
-  return (
-    <Grid container spacing={3}>
-      <Grid lg={3} sm={6} xs={12}>
-        <Budget diff={12} trend="up" sx={{ height: '100%' }} value="$24k" />
-      </Grid>
-      <Grid lg={3} sm={6} xs={12}>
-        <TotalCustomers diff={16} trend="down" sx={{ height: '100%' }} value="1.6k" />
-      </Grid>
-      <Grid lg={3} sm={6} xs={12}>
-        <TasksProgress sx={{ height: '100%' }} value={75.5} />
-      </Grid>
-      <Grid lg={3} sm={6} xs={12}>
-        <TotalProfit sx={{ height: '100%' }} value="$15k" />
-      </Grid>
-      <Grid lg={8} xs={12}>
-        <Sales
-          chartSeries={[
-            { name: 'This year', data: [18, 16, 5, 8, 3, 14, 14, 16, 17, 19, 18, 20] },
-            { name: 'Last year', data: [12, 11, 4, 6, 2, 9, 9, 10, 11, 12, 13, 13] },
-          ]}
-          sx={{ height: '100%' }}
-        />
-      </Grid>
-      <Grid lg={4} md={6} xs={12}>
-        <Traffic chartSeries={[63, 15, 22]} labels={['Desktop', 'Tablet', 'Phone']} sx={{ height: '100%' }} />
-      </Grid>
-      <Grid lg={4} md={6} xs={12}>
-        <LatestProducts
-          products={[
-            {
-              id: 'PRD-005',
-              name: 'Soja & Co. Eucalyptus',
-              image: '/assets/product-5.png',
-              updatedAt: dayjs().subtract(18, 'minutes').subtract(5, 'hour').toDate(),
-            },
-            {
-              id: 'PRD-004',
-              name: 'Necessaire Body Lotion',
-              image: '/assets/product-4.png',
-              updatedAt: dayjs().subtract(41, 'minutes').subtract(3, 'hour').toDate(),
-            },
-            {
-              id: 'PRD-003',
-              name: 'Ritual of Sakura',
-              image: '/assets/product-3.png',
-              updatedAt: dayjs().subtract(5, 'minutes').subtract(3, 'hour').toDate(),
-            },
-            {
-              id: 'PRD-002',
-              name: 'Lancome Rouge',
-              image: '/assets/product-2.png',
-              updatedAt: dayjs().subtract(23, 'minutes').subtract(2, 'hour').toDate(),
-            },
-            {
-              id: 'PRD-001',
-              name: 'Erbology Aloe Vera',
-              image: '/assets/product-1.png',
-              updatedAt: dayjs().subtract(10, 'minutes').toDate(),
-            },
-          ]}
-          sx={{ height: '100%' }}
-        />
-      </Grid>
-      <Grid lg={8} md={12} xs={12}>
-        <LatestOrders
-          orders={[
-            {
-              id: 'ORD-007',
-              customer: { name: 'Ekaterina Tankova' },
-              amount: 30.5,
-              status: 'pending',
-              createdAt: dayjs().subtract(10, 'minutes').toDate(),
-            },
-            {
-              id: 'ORD-006',
-              customer: { name: 'Cao Yu' },
-              amount: 25.1,
-              status: 'delivered',
-              createdAt: dayjs().subtract(10, 'minutes').toDate(),
-            },
-            {
-              id: 'ORD-004',
-              customer: { name: 'Alexa Richardson' },
-              amount: 10.99,
-              status: 'refunded',
-              createdAt: dayjs().subtract(10, 'minutes').toDate(),
-            },
-            {
-              id: 'ORD-003',
-              customer: { name: 'Anje Keizer' },
-              amount: 96.43,
-              status: 'pending',
-              createdAt: dayjs().subtract(10, 'minutes').toDate(),
-            },
-            {
-              id: 'ORD-002',
-              customer: { name: 'Clarke Gillebert' },
-              amount: 32.54,
-              status: 'delivered',
-              createdAt: dayjs().subtract(10, 'minutes').toDate(),
-            },
-            {
-              id: 'ORD-001',
-              customer: { name: 'Adam Denisov' },
-              amount: 16.76,
-              status: 'delivered',
-              createdAt: dayjs().subtract(10, 'minutes').toDate(),
-            },
-          ]}
-          sx={{ height: '100%' }}
-        />
-      </Grid>
-    </Grid>
-  );
+// Mock data, replace with your API or state management logic
+const mockData = {
+  ca: { CA: 1000, CAI: 500, CAE: 300, CAO: 200, AVOIR: 50 },
+  nombrePD: { NB_DEMANDES: 150, NB_PATIENTS: 120 },
+  caisse: { Cash: 400, Credit: 600 },
+  caisseDetaillee: { Cash: { 1: 200, 2: 200 }, Credit: { 1: 300, 2: 300 } },
+  comptesCaisse: [1, 2],
+};
+
+// Styled Components
+const DashboardContainer = styled(Container)(({ theme }) => ({
+  padding: theme.spacing(4),
+  width: '900px',
+}));
+
+const DashboardTitle = styled(Typography)(({ theme }) => ({
+  marginBottom: theme.spacing(4),
+  textAlign: 'center',
+}));
+
+const GraphPaper = styled(Paper)(({ theme }) => ({
+  padding: theme.spacing(2),
+  height: '400px',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  width: '100%', // Set width to 100% to take full width of the container
+}));
+
+const DateFormControl = styled(FormControl)(({ theme }) => ({
+  minWidth: '80px',
+}));
+
+// Define props types for DateSelector
+interface DateSelectorProps {
+  onDateChange: (type: string, value: string) => void;
+  onAffichage: () => void;
 }
+
+const DateSelector: React.FC<DateSelectorProps> = ({ onDateChange, onAffichage }) => {
+  return (
+    <Box sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
+      <Grid container spacing={2} alignItems="center" justifyContent="center">
+        <Grid item>
+          <TextField
+            label="Day"
+            type="number"
+            InputLabelProps={{ shrink: true }}
+            inputProps={{ min: 1, max: 31 }}
+            size="small"
+            onChange={(e) => onDateChange('day', e.target.value)}
+          />
+        </Grid>
+        <Grid item>
+          <TextField
+            label="Month"
+            type="number"
+            InputLabelProps={{ shrink: true }}
+            inputProps={{ min: 1, max: 12 }}
+            size="small"
+            onChange={(e) => onDateChange('month', e.target.value)}
+          />
+        </Grid>
+        <Grid item>
+          <TextField
+            label="Year"
+            type="number"
+            InputLabelProps={{ shrink: true }}
+            inputProps={{ min: 2000, max: 2100 }}
+            size="small"
+            onChange={(e) => onDateChange('year', e.target.value)}
+          />
+        </Grid>
+        <Grid item>
+          <Button
+            variant="contained"
+            onClick={onAffichage}
+            size="small"
+            sx={{ backgroundColor: 'black', width: '150px' }}
+          >
+            Afficher
+          </Button>
+        </Grid>
+      </Grid>
+    </Box>
+  );
+};
+
+const Dashboard: React.FC = () => {
+  const [date, setDate] = useState({ day: '01', month: '01', year: '2023' });
+
+  const handleDateChange = (type: string, value: string) => {
+    setDate((prevDate) => ({ ...prevDate, [type]: value }));
+  };
+
+  const handleAffichage = () => {
+    console.log('Selected Date:', date);
+    // Add your date handling logic here
+  };
+
+  return (
+    <DashboardContainer sx={{ backgroundColor: 'red' }}>
+      <Grid container spacing={3}>
+        <Grid item xs={12} md={6}>
+          <GraphPaper sx={{ border: '1px solid black', backgroundColor: 'none' }}>
+            <Bar
+              data={{
+                labels: ['Net', 'Interne', 'Externe', 'Officiel', 'Avoir'],
+                datasets: [
+                  {
+                    label: "Chiffre d'Affaires",
+                    data: [mockData.ca.CA, mockData.ca.CAI, mockData.ca.CAE, mockData.ca.CAO, mockData.ca.AVOIR],
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                  },
+                ],
+              }}
+              options={{
+                maintainAspectRatio: false,
+              }}
+            />
+          </GraphPaper>
+        </Grid>
+
+        <Grid item xs={12} md={6}>
+          <GraphPaper sx={{ border: '1px solid black' }}>
+            <Bar
+              data={{
+                labels: Object.keys(mockData.caisse),
+                datasets: [
+                  {
+                    label: 'Caisse',
+                    data: Object.values(mockData.caisse),
+                    backgroundColor: 'rgba(44, 191, 137, 0.6)',
+                    borderColor: 'rgba(44, 191, 137, 0.2)',
+                    borderWidth: 1,
+                  },
+                ],
+              }}
+              options={{
+                maintainAspectRatio: false,
+              }}
+            />
+          </GraphPaper>
+        </Grid>
+
+        <Grid item xs={12}>
+          <DateSelector onDateChange={handleDateChange} onAffichage={handleAffichage} />
+        </Grid>
+      </Grid>
+    </DashboardContainer>
+  );
+};
+
+export default Dashboard;

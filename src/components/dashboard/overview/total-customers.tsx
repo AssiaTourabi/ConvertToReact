@@ -21,13 +21,17 @@ export function TotalCustomers({ diff, trend, sx, value }: TotalCustomersProps):
   const trendColor = trend === 'up' ? 'var(--mui-palette-success-main)' : 'var(--mui-palette-error-main)';
 
   return (
-    <Card sx={sx}>
+    <Card sx={{
+      backgroundImage: 'linear-gradient(150deg, #4600f1,   #39ef74 100%);', // Adjust gradient colors as needed
+      color: 'white', // Text color
+      ...sx, // Allow custom styles to override
+    }}>
       <CardContent>
         <Stack spacing={2}>
           <Stack direction="row" sx={{ alignItems: 'flex-start', justifyContent: 'space-between' }} spacing={3}>
             <Stack spacing={1}>
-              <Typography color="text.secondary" variant="overline">
-                Total Customers
+              <Typography color="white" variant="overline">
+                Total Patients
               </Typography>
               <Typography variant="h4">{value}</Typography>
             </Stack>
@@ -37,15 +41,8 @@ export function TotalCustomers({ diff, trend, sx, value }: TotalCustomersProps):
           </Stack>
           {diff ? (
             <Stack sx={{ alignItems: 'center' }} direction="row" spacing={2}>
-              <Stack sx={{ alignItems: 'center' }} direction="row" spacing={0.5}>
-                <TrendIcon color={trendColor} fontSize="var(--icon-fontSize-md)" />
-                <Typography color={trendColor} variant="body2">
-                  {diff}%
-                </Typography>
-              </Stack>
-              <Typography color="text.secondary" variant="caption">
-                Since last month
-              </Typography>
+              
+             
             </Stack>
           ) : null}
         </Stack>

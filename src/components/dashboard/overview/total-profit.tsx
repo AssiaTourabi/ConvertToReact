@@ -14,16 +14,20 @@ export interface TotalProfitProps {
 
 export function TotalProfit({ value, sx }: TotalProfitProps): React.JSX.Element {
   return (
-    <Card sx={sx}>
+    <Card sx={{
+      backgroundImage: 'linear-gradient(135deg, #2C96BF, #2CBF89)', // Adjust gradient colors as needed
+      color: 'white', // Text color
+      ...sx, 
+    }}>
       <CardContent>
         <Stack direction="row" sx={{ alignItems: 'flex-start', justifyContent: 'space-between' }} spacing={3}>
           <Stack spacing={1}>
-            <Typography color="text.secondary" variant="overline">
-              Total Profit
+            <Typography color="white" variant="overline">
+              Caisse Total
             </Typography>
-            <Typography variant="h4">{value}</Typography>
+            <Typography variant="h4" sx={{marginTop:"30px"}}>{value}</Typography>
           </Stack>
-          <Avatar sx={{ backgroundColor: 'var(--mui-palette-primary-main)', height: '56px', width: '56px' }}>
+          <Avatar sx={{ backgroundColor: '#2C96BF', height: '56px', width: '56px' }}>
             <ReceiptIcon fontSize="var(--icon-fontSize-lg)" />
           </Avatar>
         </Stack>

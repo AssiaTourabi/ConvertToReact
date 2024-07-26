@@ -73,17 +73,17 @@ export function SignInForm(): React.JSX.Element {
   return (
     <Stack spacing={4}>
       <Stack spacing={1}>
-      <Typography variant="h4" sx={{ fontFamily: 'American Typewriter, serifOCR A Std, monospace' }}>Sign In</Typography>
+      <Typography variant="h4" sx={{      fontFamily: 'Lato, sans-serif',color: "#00008B", marginLeft:'25%',marginTop:'12%',fontSize:'30px'}}>Sign_In </Typography>
 
-        <Typography color="text.secondary" variant="body2">
+        <Typography color="text.secondary" variant="body2" sx={{marginLeft:'25%'}}>
           Don&apos;t have an account?{' '}
-          <Link component={RouterLink} href={paths.auth.signUp} underline="hover" variant="subtitle2"  sx={{ color: '#333333' }}>
+          <Link component={RouterLink} href={paths.auth.signUp} underline="hover" variant="subtitle2"  sx={{ color: '#1c9a8d' }}>
             Sign up
           </Link>
         </Typography>
       </Stack>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Stack spacing={2}>
+      <form onSubmit={handleSubmit(onSubmit)} >
+        <Stack spacing={2} sx={{marginLeft:'25%'}}>
           <Controller
             control={control}
             name="email"
@@ -137,25 +137,16 @@ export function SignInForm(): React.JSX.Element {
           </div>
           {errors.root ? <Alert color="error">{errors.root.message}</Alert> : null}
           <Button disabled={isPending} type="submit" variant="contained"  sx={{
-    backgroundColor: 'black',
+    backgroundColor: '#34c291',
     '&:hover': {
-      backgroundColor: 'grey',
+      backgroundColor: '#378db7',
     },
   }}>
             Sign in
           </Button>
         </Stack>
       </form>
-      <Alert color="warning">
-        Use{' '}
-        <Typography component="span" sx={{ fontWeight: 700 }} variant="inherit">
-          alouahajar20@gmail.com
-        </Typography>{' '}
-        with password{' '}
-        <Typography component="span" sx={{ fontWeight: 700 }} variant="inherit">
-          Secret1
-        </Typography>
-      </Alert>
+     
     </Stack>
   );
 }

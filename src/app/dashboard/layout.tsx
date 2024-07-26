@@ -11,7 +11,7 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 
-export default function Layout({ children }: LayoutProps): React.JSX.Element {
+const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <AuthGuard>
       <GlobalStyles
@@ -28,18 +28,36 @@ export default function Layout({ children }: LayoutProps): React.JSX.Element {
       />
       <Box
         sx={{
-          bgcolor: 'var(--mui-palette-background-default)',
+          bgcolor: '#f1f1ee',
           display: 'flex',
           flexDirection: 'column',
           position: 'relative',
-          minHeight: '100%',
+          minHeight: '100vh',
+          pb: '64px', // Ajout de padding en bas
         }}
       >
         <SideNav />
-        <Box sx={{ display: 'flex', flex: '1 1 auto', flexDirection: 'column', pl: { lg: 'var(--SideNav-width)' } }}>
+        <Box
+          sx={{
+            display: 'flex',
+            flex: '1 1 auto',
+            flexDirection: 'column',
+            pl: { lg: 'var(--SideNav-width)' },
+          }}
+        >
           <MainNav />
           <main>
-            <Container maxWidth="xl" sx={{ py: '64px' }}>
+            <Container
+              maxWidth="xl"
+              sx={{
+                py: '64px',
+                backgroundColor: 'none',
+                width: '990px',
+                borderRadius: '25px',
+                minHeight: 'calc(100vh - var(--MainNav-height) - 128px)', // Assurer un minimum de hauteur
+                pb: '64px', // Ajout de padding en bas pour le container
+              }}
+            >
               {children}
             </Container>
           </main>
@@ -47,4 +65,6 @@ export default function Layout({ children }: LayoutProps): React.JSX.Element {
       </Box>
     </AuthGuard>
   );
-}
+};
+
+export default Layout;
