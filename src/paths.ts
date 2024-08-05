@@ -15,6 +15,16 @@ export const paths = {
     gestionCompte:'/dashboard/gestionCompte',
     acces:'/dashboard/acces',
     lesion:'/dashboard/lesion',
+    parametrage:'/dashboard/parametrage',
+    gestionCr:'/dashboard/gestioncr',
+    ajoutGroupe:'/dashboard/ajoutGroupe',
+    reaffectationDemande:'/dashboard/ReaffectationDemande',
+    gestionFactures:'/dashboard/gestionFacture',
+    facturationPersonnalise:'/dashboard/facturationPersonnalise',
+    rechercheAvance:'/dashboard/rechercheAvance',
+    fusionMedecin:'/dashboard/rechercheAvanceMedecin',
+    comptabilite:'/dashboard/comptabilite',
+    modifierPatient:'/dashboard/modifierPatient',
     
     
   },

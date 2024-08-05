@@ -1,14 +1,14 @@
 {
   "pages": {
-    "/dashboard/lesion/page": [
+    "/not-found": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/dashboard/lesion/page.js"
+      "static/chunks/app/not-found.js"
     ],
-    "/dashboard/layout": [
+    "/_not-found/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/dashboard/layout.js"
+      "static/chunks/app/_not-found/page.js"
     ],
     "/layout": [
       "static/chunks/webpack.js",
@@ -16,40 +16,40 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/not-found": [
+    "/dashboard/gestionFacture/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/not-found.js"
+      "static/chunks/app/dashboard/gestionFacture/page.js"
     ],
-    "/dashboard/page": [
+    "/dashboard/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/dashboard/page.js"
+      "static/chunks/app/dashboard/layout.js"
     ],
-    "/_not-found/page": [
+    "/dashboard/facturationPersonnalise/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/_not-found/page.js"
+      "static/chunks/app/dashboard/facturationPersonnalise/page.js"
     ],
-    "/dashboard/acces/page": [
+    "/dashboard/rechercheAvance/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/dashboard/acces/page.js"
+      "static/chunks/app/dashboard/rechercheAvance/page.js"
     ],
-    "/dashboard/gestionCompte/page": [
+    "/dashboard/rechercheAvanceMedecin/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/dashboard/gestionCompte/page.js"
+      "static/chunks/app/dashboard/rechercheAvanceMedecin/page.js"
     ],
-    "/auth/sign-in/page": [
+    "/dashboard/reporting/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/auth/sign-in/page.js"
+      "static/chunks/app/dashboard/reporting/page.js"
     ],
-    "/dashboard/settings/page": [
+    "/dashboard/comptabilite/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/dashboard/settings/page.js"
+      "static/chunks/app/dashboard/comptabilite/page.js"
     ]
   }
 }
