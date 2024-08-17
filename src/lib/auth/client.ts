@@ -11,9 +11,9 @@ function generateToken(): string {
 const user = {
   id: 'USR-000',
   avatar: '/assets/avatar.png',
-  firstName: 'hajar',
-  lastName: 'aloua',
-  email: 'alouahajar20@gmail.com',
+  firstName: 'Assia',
+  lastName: 'Tourabi',
+  email: 'assiatourabi55@gmail.com',
 } satisfies User;
 
 export interface SignUpParams {
@@ -53,7 +53,7 @@ class AuthClient {
     const { email, password } = params;
 
  
-    if (email !== 'alouahajar20@gmail.com' || password !== 'Secret1') {
+    if (email !== 'assiatourabi55@gmail.com' || password !== 'assia') {
       return { error: 'Invalid credentials' };
     }
 

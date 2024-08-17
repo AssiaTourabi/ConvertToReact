@@ -13,6 +13,7 @@ import Link from '@mui/material/Link';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import { SelectionBackground } from '@phosphor-icons/react';
 import { Eye as EyeIcon } from '@phosphor-icons/react/dist/ssr/Eye';
 import { EyeSlash as EyeSlashIcon } from '@phosphor-icons/react/dist/ssr/EyeSlash';
 import { Controller, useForm } from 'react-hook-form';
@@ -21,7 +22,6 @@ import { z as zod } from 'zod';
 import { paths } from '@/paths';
 import { authClient } from '@/lib/auth/client';
 import { useUser } from '@/hooks/use-user';
-import { SelectionBackground } from '@phosphor-icons/react';
 
 const schema = zod.object({
   email: zod.string().min(1, { message: 'Email is required' }).email(),
@@ -30,7 +30,7 @@ const schema = zod.object({
 
 type Values = zod.infer<typeof schema>;
 
-const defaultValues = { email: 'alouahajar20@gmail.com', password: 'Secret1' } satisfies Values;
+const defaultValues = { email: 'assiatourabi55@gmail.com', password: 'assia' } satisfies Values;
 
 export function SignInForm(): React.JSX.Element {
   const router = useRouter();
@@ -73,17 +73,34 @@ export function SignInForm(): React.JSX.Element {
   return (
     <Stack spacing={4}>
       <Stack spacing={1}>
-      <Typography variant="h4" sx={{      fontFamily: 'Lato, sans-serif',color: "#00008B", marginLeft:'25%',marginTop:'12%',fontSize:'30px'}}>Sign_In </Typography>
+        <Typography
+          variant="h4"
+          sx={{
+            fontFamily: 'Lato, sans-serif',
+            color: '#00008B',
+            marginLeft: '25%',
+            marginTop: '12%',
+            fontSize: '30px',
+          }}
+        >
+          Sign_In{' '}
+        </Typography>
 
-        <Typography color="text.secondary" variant="body2" sx={{marginLeft:'25%'}}>
+        <Typography color="text.secondary" variant="body2" sx={{ marginLeft: '25%' }}>
           Don&apos;t have an account?{' '}
-          <Link component={RouterLink} href={paths.auth.signUp} underline="hover" variant="subtitle2"  sx={{ color: '#1c9a8d' }}>
+          <Link
+            component={RouterLink}
+            href={paths.auth.signUp}
+            underline="hover"
+            variant="subtitle2"
+            sx={{ color: '#1c9a8d' }}
+          >
             Sign up
           </Link>
         </Typography>
       </Stack>
-      <form onSubmit={handleSubmit(onSubmit)} >
-        <Stack spacing={2} sx={{marginLeft:'25%'}}>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Stack spacing={2} sx={{ marginLeft: '25%' }}>
           <Controller
             control={control}
             name="email"
@@ -102,7 +119,6 @@ export function SignInForm(): React.JSX.Element {
               <FormControl error={Boolean(errors.password)}>
                 <InputLabel>Password</InputLabel>
                 <OutlinedInput
-                
                   {...field}
                   endAdornment={
                     showPassword ? (
@@ -136,17 +152,21 @@ export function SignInForm(): React.JSX.Element {
             </Link>
           </div>
           {errors.root ? <Alert color="error">{errors.root.message}</Alert> : null}
-          <Button disabled={isPending} type="submit" variant="contained"  sx={{
-    backgroundColor: '#34c291',
-    '&:hover': {
-      backgroundColor: '#378db7',
-    },
-  }}>
+          <Button
+            disabled={isPending}
+            type="submit"
+            variant="contained"
+            sx={{
+              backgroundColor: '#34c291',
+              '&:hover': {
+                backgroundColor: '#378db7',
+              },
+            }}
+          >
             Sign in
           </Button>
         </Stack>
       </form>
-     
     </Stack>
   );
 }

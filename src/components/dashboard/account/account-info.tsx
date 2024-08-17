@@ -9,9 +9,9 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
 const user = {
-  name: 'Hajar Aloua',
+  name: 'Assia Tourabi',
   avatar: '/assets/avatar.png',
-  jobTitle: ' élève ingénieur en génie informatique et ingénieurie de donnée',
+  jobTitle: ' élève ingénieur en troisieme année génie informatique',
   country: 'Moroc',
   city: 'CasaBlanca',
   timezone: 'GTM+1',

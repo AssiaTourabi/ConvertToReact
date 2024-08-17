@@ -17,7 +17,6 @@ import Grid from '@mui/material/Unstable_Grid2';
 const states = [
   { value: 'Actif', label: 'Actif' },
   { value: 'Inactif', label: 'Inactif' },
- 
 ] as const;
 const profile = [
   { value: 'GESTIONNAIRE_DEMANDE', label: 'GESTIONNAIRE_DEMANDE' },
@@ -28,7 +27,6 @@ const profile = [
   { value: 'ADMINISTRATEUR', label: 'ADMINISTRATEUR' },
   { value: 'ORGANISME', label: 'ORGANISME' },
   { value: 'MEDECIN', label: 'MEDECIN' },
- 
 ] as const;
 
 export function AccountDetailsForm(): React.JSX.Element {
@@ -38,30 +36,30 @@ export function AccountDetailsForm(): React.JSX.Element {
         event.preventDefault();
       }}
     >
-         <Card>
+      <Card>
         <CardHeader subheader="les informations peuvent etre modifier" title="Profile" />
         <Divider />
-        <CardContent >
+        <CardContent>
           <Grid container spacing={3}>
             <Grid md={6} xs={12}>
-              <FormControl  fullWidth required>
+              <FormControl fullWidth required>
                 <InputLabel>Prénom</InputLabel>
-                <OutlinedInput defaultValue="Hajar" label="First name" name="firstName" />
+                <OutlinedInput defaultValue="Assia" label="First name" name="firstName" />
               </FormControl>
             </Grid>
             <Grid md={6} xs={12}>
               <FormControl fullWidth required>
                 <InputLabel>Nom</InputLabel>
-                <OutlinedInput defaultValue="Aloua" label="Last name" name="lastName" />
+                <OutlinedInput defaultValue="Tourabi" label="Last name" name="lastName" />
               </FormControl>
             </Grid>
             <Grid md={6} xs={12}>
               <FormControl fullWidth required>
                 <InputLabel>addresse Email </InputLabel>
-                <OutlinedInput defaultValue="alouahajar20@gmail.com" label="Email address" name="email" />
+                <OutlinedInput defaultValue="assiatourabi55@gmail.com" label="Email address" name="email" />
               </FormControl>
             </Grid>
-          
+
             <Grid md={6} xs={12}>
               <FormControl fullWidth>
                 <InputLabel>Etat</InputLabel>
@@ -90,7 +88,9 @@ export function AccountDetailsForm(): React.JSX.Element {
         </CardContent>
         <Divider />
         <CardActions sx={{ justifyContent: 'flex-end' }}>
-          <Button variant="contained" sx={{backgroundColor:'black'}}>sauvegarder détails</Button>
+          <Button variant="contained" sx={{ backgroundColor: 'black' }}>
+            sauvegarder détails
+          </Button>
         </CardActions>
       </Card>
     </form>

@@ -1,4 +1,4 @@
-import { House, Swap, Wrench } from '@phosphor-icons/react';
+import { House, Swap, UserCheck, Wrench } from '@phosphor-icons/react';
 import type { Icon } from '@phosphor-icons/react/dist/lib/types';
 import { ChartPie as ChartPieIcon } from '@phosphor-icons/react/dist/ssr/ChartPie';
 import { GearSix as GearSixIcon } from '@phosphor-icons/react/dist/ssr/GearSix';
@@ -17,4 +17,5 @@ export const navIcons = {
   swap: Swap,
   user: UserIcon,
   users: UsersIcon,
+  UserCheck: UserCheck,
 } as Record<string, Icon>;

@@ -36,27 +36,27 @@ const MedecinPage = () => {
   const medecinsList = [
     {
       id: 1,
-      nom: 'Dr. Smith',
+      nom: 'Assia Tourabi',
       specialite: 'Cardiologist',
       tel: '123456789',
-      email: 'smith@example.com',
-      adresse: '123 Street',
+      email: 'assia@example.com',
+      adresse: 'Khouribga',
     },
     {
       id: 2,
-      nom: 'Dr. Jones',
+      nom: 'Ahmed AHMED',
       specialite: 'Dermatologist',
       tel: '987654321',
-      email: 'jones@example.com',
-      adresse: '456 Avenue',
+      email: 'Ahmed@example.com',
+      adresse: 'Rabat',
     },
     {
       id: 3,
-      nom: 'Dr. Taylor',
+      nom: 'Salma Salma',
       specialite: 'Neurologist',
       tel: '567890123',
-      email: 'taylor@example.com',
-      adresse: '789 Boulevard',
+      email: 'Salma@example.com',
+      adresse: 'CasaBlanca',
     },
   ];
 

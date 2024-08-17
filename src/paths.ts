@@ -1,3 +1,5 @@
+import Reporting from "./components/dashboard/reporting/reportingPage";
+
 export const paths = {
   home: '/',
    landingPage:'/dashboard/landingPage',
@@ -25,6 +27,11 @@ export const paths = {
     fusionMedecin:'/dashboard/rechercheAvanceMedecin',
     comptabilite:'/dashboard/comptabilite',
     modifierPatient:'/dashboard/modifierPatient',
+    statistiquesCR:'/dashboard/statistiqueCR',
+    activite:'/dashboard/activite',
+    reporting:'/dashboard/reporting',
+    tableauBord:'/dashboard/tableauBord',
+    demande:'/dashboard/demande'
     
     
   },

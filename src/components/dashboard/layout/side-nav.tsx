@@ -43,7 +43,7 @@ export function SideNav(): React.JSX.Element {
         color: 'red',
         display: { xs: 'none', lg: 'flex' },
         flexDirection: 'column',
-        height: '100%',
+        height: '99%',
         left: 0,
         maxWidth: '100%',
         position: 'fixed',
@@ -53,13 +53,15 @@ export function SideNav(): React.JSX.Element {
         zIndex: 'var(--SideNav-zIndex)',
         '&::-webkit-scrollbar': { display: 'none' },
         borderRadius: '0 20px 20px 0',
-
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
+        overflowY: 'auto',
+        maxHeight: '100vh',
       }}
     >
-      <Stack spacing={2} sx={{ p: 3 }}>
+      {/* Make the Stack with the logo sticky */}
+      <Stack spacing={2} sx={{ p: 3, position: 'sticky', top: 0, zIndex: 1 }}>
         <Box
           component={RouterLink}
           href={paths.home}
@@ -244,7 +246,15 @@ function NavItemWithDropdown({
               {title}
             </Typography>
           </Box>
-          <Box sx={{ flex: '0 0 auto' }}>{open ? <ExpandLess /> : <ExpandMore />}</Box>
+          <Box
+            sx={{
+              flex: '0 0 auto',
+              marginLeft: 'auto', // Push the icon to the far right
+              paddingRight: '16px', // Ensure a consistent gap from the right edge
+            }}
+          >
+            {open ? <ExpandLess /> : <ExpandMore />}
+          </Box>
         </Box>
       </li>
       <Collapse in={open} timeout="auto" unmountOnExit>

@@ -4,12 +4,10 @@ import * as React from 'react';
 import RouterLink from 'next/link';
 import { usePathname } from 'next/navigation';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import { ArrowSquareUpRight as ArrowSquareUpRightIcon } from '@phosphor-icons/react/dist/ssr/ArrowSquareUpRight';
 import { CaretUpDown as CaretUpDownIcon } from '@phosphor-icons/react/dist/ssr/CaretUpDown';
 
 import type { NavItemConfig } from '@/types/nav';
@@ -48,19 +46,29 @@ export function MobileNav({ open, onClose }: MobileNavProps): React.JSX.Element 
           display: 'flex',
           flexDirection: 'column',
           maxWidth: '100%',
-          scrollbarWidth: 'none',
-          width: 'var(--MobileNav-width)',
+          height: '100vh', // Full height for the sidebar
           zIndex: 'var(--MobileNav-zIndex)',
-          '&::-webkit-scrollbar': { display: 'none' },
         },
       }}
       onClose={onClose}
       open={open}
     >
-      <Stack spacing={2} sx={{ p: 3 }}>
-        <Box component={RouterLink} href={paths.home} sx={{ display: 'inline-flex' }}>
-          <Logo color="light" height={32} width={122} />
-        </Box>
+      {/* Sticky header with logo */}
+      <Stack
+        spacing={2}
+        sx={{
+          p: 2,
+          position: 'sticky',
+          top: 0,
+          zIndex: 10,
+          bgcolor: 'var(--MobileNav-background)',
+        }}
+      >
+        <Stack spacing={2} sx={{ p: 2, position: 'sticky', top: 0, zIndex: 10 }}>
+          <Box component={RouterLink} href={paths.home} sx={{ display: 'inline-flex' }}>
+            <Logo color="light" height={32} width={122} />
+          </Box>
+        </Stack>
         <Box
           sx={{
             alignItems: 'center',
@@ -69,29 +77,35 @@ export function MobileNav({ open, onClose }: MobileNavProps): React.JSX.Element 
             borderRadius: '12px',
             cursor: 'pointer',
             display: 'flex',
-            p: '4px 12px',
+            p: '4px 10px',
           }}
         >
           <Box sx={{ flex: '1 1 auto' }}>
-            <Typography color="var(--mui-palette-neutral-400)" variant="body2">
-        
-            </Typography>
-            <Typography color="inherit" variant="subtitle1">
-         
-            </Typography>
+            <Typography color="var(--mui-palette-neutral-400)" variant="body2"></Typography>
+            <Typography color="inherit" variant="subtitle1"></Typography>
           </Box>
           <CaretUpDownIcon />
         </Box>
       </Stack>
       <Divider sx={{ borderColor: 'var(--mui-palette-neutral-700)' }} />
-      <Box component="nav" sx={{ flex: '1 1 auto', p: '12px' }}>
+
+      {/* Scrollable nav content */}
+      <Box
+        component="nav"
+        sx={{
+          flex: '1 1 auto',
+          overflowY: 'auto',
+          p: '12px',
+        }}
+      >
         {renderNavItems({ pathname, items: navItems })}
       </Box>
-      <Divider sx={{ borderColor: 'var(--mui-palette-neutral-700)' }} />
-      <Stack spacing={2} sx={{ p: '12px' }}>
-        
-       
-      </Stack>
+
+      {/* Footer section */}
+      <Box sx={{ p: 2 }}>
+        <Divider sx={{ borderColor: 'var(--mui-palette-neutral-700)' }} />
+        {/* Footer content if needed */}
+      </Box>
     </Drawer>
   );
 }
@@ -137,10 +151,8 @@ function NavItem({ disabled, external, href, icon, matcher, pathname, title }: N
           color: 'var(--NavItem-color)',
           cursor: 'pointer',
           display: 'flex',
-          flex: '0 0 auto',
           gap: 1,
           p: '6px 16px',
-          position: 'relative',
           textDecoration: 'none',
           whiteSpace: 'nowrap',
           ...(disabled && {
@@ -151,23 +163,21 @@ function NavItem({ disabled, external, href, icon, matcher, pathname, title }: N
           ...(active && { bgcolor: 'var(--NavItem-active-background)', color: 'var(--NavItem-active-color)' }),
         }}
       >
-        <Box sx={{ alignItems: 'center', display: 'flex', justifyContent: 'center', flex: '0 0 auto' }}>
-          {Icon ? (
+        {Icon ? (
+          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <Icon
               fill={active ? 'var(--NavItem-icon-active-color)' : 'var(--NavItem-icon-color)'}
               fontSize="var(--icon-fontSize-md)"
               weight={active ? 'fill' : undefined}
             />
-          ) : null}
-        </Box>
-        <Box sx={{ flex: '1 1 auto' }}>
-          <Typography
-            component="span"
-            sx={{ color: 'inherit', fontSize: '0.875rem', fontWeight: 500, lineHeight: '28px' }}
-          >
-            {title}
-          </Typography>
-        </Box>
+          </Box>
+        ) : null}
+        <Typography
+          component="span"
+          sx={{ color: 'inherit', fontSize: '0.875rem', fontWeight: 500, lineHeight: '28px' }}
+        >
+          {title}
+        </Typography>
       </Box>
     </li>
   );

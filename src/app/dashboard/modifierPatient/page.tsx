@@ -1,11 +1,11 @@
 import React from 'react';
 
-import modifierPatient from '@/components/dashboard/outils/modifierPatient';
+import ModifierPatient from '@/components/dashboard/outils/modifierPatient';
 
 const Page = () => {
   return (
     <div>
-      <modifierPatient />
+      <ModifierPatient />
     </div>
   );
 };
