@@ -29,7 +29,7 @@ export const navItems = [
     items: [
       { key: 'subitem2', title: 'Activités', href: paths.dashboard.activite },
       { key: 'subitem1', title: 'Comptabilite', href: paths.dashboard.comptabilite },
-      { key: 'subitem2', title: "tableaux d'hincoherences", href: paths.dashboard.reporting },
+      { key: 'subitem2', title: "table d'incoherences", href: paths.dashboard.tableIncoherence },
       { key: 'subitem2', title: 'reporting', href: paths.dashboard.reporting},
       { key: 'subitem2', title: 'dashboard', href: paths.dashboard.tableauBord},
     ]

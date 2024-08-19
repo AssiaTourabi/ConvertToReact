@@ -24,13 +24,13 @@ import { authClient } from '@/lib/auth/client';
 import { useUser } from '@/hooks/use-user';
 
 const schema = zod.object({
-  email: zod.string().min(1, { message: 'Email is required' }).email(),
+  identifiant: zod.string().min(1, { message: 'identifiant is required' }),
   password: zod.string().min(1, { message: 'Password is required' }),
 });
 
 type Values = zod.infer<typeof schema>;
 
-const defaultValues = { email: 'assiatourabi55@gmail.com', password: 'assia' } satisfies Values;
+const defaultValues = { identifiant: 'assiatourabi55@gmail.com', password: 'assia' } satisfies Values;
 
 export function SignInForm(): React.JSX.Element {
   const router = useRouter();
@@ -85,7 +85,7 @@ export function SignInForm(): React.JSX.Element {
         >
           Sign_In{' '}
         </Typography>
-
+        {/*}
         <Typography color="text.secondary" variant="body2" sx={{ marginLeft: '25%' }}>
           Don&apos;t have an account?{' '}
           <Link
@@ -98,17 +98,18 @@ export function SignInForm(): React.JSX.Element {
             Sign up
           </Link>
         </Typography>
+        {*/}
       </Stack>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={2} sx={{ marginLeft: '25%' }}>
           <Controller
             control={control}
-            name="email"
+            name="identifiant"
             render={({ field }) => (
-              <FormControl error={Boolean(errors.email)}>
-                <InputLabel>Email address</InputLabel>
-                <OutlinedInput {...field} label="Email address" type="email" />
-                {errors.email ? <FormHelperText>{errors.email.message}</FormHelperText> : null}
+              <FormControl error={Boolean(errors.identifiant)}>
+                <InputLabel>identifiant address</InputLabel>
+                <OutlinedInput {...field} label="identifiant address" type="identifiant" />
+                {errors.identifiant ? <FormHelperText>{errors.identifiant.message}</FormHelperText> : null}
               </FormControl>
             )}
           />
@@ -148,7 +149,7 @@ export function SignInForm(): React.JSX.Element {
           />
           <div>
             <Link component={RouterLink} href={paths.auth.resetPassword} variant="subtitle2" sx={{ color: '#333333' }}>
-              Forgot password?
+              Mot de Passe oublié?
             </Link>
           </div>
           {errors.root ? <Alert color="error">{errors.root.message}</Alert> : null}

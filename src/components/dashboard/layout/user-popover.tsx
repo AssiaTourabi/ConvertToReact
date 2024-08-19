@@ -37,11 +37,9 @@ export function UserPopover({ anchorEl, onClose, open }: UserPopoverProps): Reac
         return;
       }
 
-
       await checkSession?.();
 
       router.refresh();
-
     } catch (err) {
       logger.error('Sign out error', err);
     }
@@ -56,9 +54,9 @@ export function UserPopover({ anchorEl, onClose, open }: UserPopoverProps): Reac
       slotProps={{ paper: { sx: { width: '240px' } } }}
     >
       <Box sx={{ p: '16px 20px ' }}>
-        <Typography variant="subtitle1">Aloua Hajar</Typography>
+        <Typography variant="subtitle1">Assia Tourabi</Typography>
         <Typography color="text.secondary" variant="body2">
-          alouahajar20@gmail.com
+          assiatourabi55@gmail.com
         </Typography>
       </Box>
       <Divider />

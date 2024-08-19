@@ -155,7 +155,7 @@ const OrganismesPage = () => {
               sx={{ maxWidth: 200 }}
             />
             <TextField
-              label="Recherche par Téléphone"
+              label="Recherche par Spécialité"
               value={searchTel}
               onChange={(e) => setSearchTel(e.target.value)}
               size="small"
@@ -191,7 +191,7 @@ const OrganismesPage = () => {
                 <TableRow sx={{ backgroundColor: '#378db7', color: '#fff' }}>
                   <TableCell>Nom</TableCell>
                   <TableCell>Remise</TableCell>
-                  <TableCell>Actions</TableCell>
+                  <TableCell></TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -201,12 +201,6 @@ const OrganismesPage = () => {
                     <TableCell>{favori.remise}</TableCell>
                     <TableCell>
                       <Stack direction="row" spacing={1}>
-                        <Button
-                          variant="outlined"
-                          color="primary"
-                          onClick={() => console.log('Ajouter', favori.id)}
-                          startIcon={<EditIcon />}
-                        ></Button>
                         <Button
                           variant="outlined"
                           color="secondary"

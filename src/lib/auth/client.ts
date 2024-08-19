@@ -13,13 +13,13 @@ const user = {
   avatar: '/assets/avatar.png',
   firstName: 'Assia',
   lastName: 'Tourabi',
-  email: 'assiatourabi55@gmail.com',
+  identifiant: 'assiatourabi55@gmail.com',
 } satisfies User;
 
 export interface SignUpParams {
   firstName: string;
   lastName: string;
-  email: string;
+  identifiant: string;
   password: string;
 }
 
@@ -28,12 +28,12 @@ export interface SignInWithOAuthParams {
 }
 
 export interface SignInWithPasswordParams {
-  email: string;
+  identifiant: string;
   password: string;
 }
 
 export interface ResetPasswordParams {
-  email: string;
+  identifiant: string;
 }
 
 class AuthClient {
@@ -50,10 +50,10 @@ class AuthClient {
   }
 
   async signInWithPassword(params: SignInWithPasswordParams): Promise<{ error?: string }> {
-    const { email, password } = params;
+    const { identifiant, password } = params;
 
  
-    if (email !== 'assiatourabi55@gmail.com' || password !== 'assia') {
+    if (identifiant !== 'assiatourabi55@gmail.com' || password !== 'assia') {
       return { error: 'Invalid credentials' };
     }
 

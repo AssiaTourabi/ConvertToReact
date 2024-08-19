@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import RouterLink from 'next/link';
 import { usePathname } from 'next/navigation';
 import AddIcon from '@mui/icons-material/Add';
@@ -37,16 +37,38 @@ const ExamenPage = () => {
 
   const [showForm, setShowForm] = useState(false);
 
+  // State for search queries
+  const [searchQueries, setSearchQueries] = useState({
+    codeSearch: '',
+    designationSearch: '',
+  });
+
+  // Sample data
   const examensList = [
     { id: 1, code: 'EX001', designation: 'Examen A', prix: '100', delai: '7' },
     { id: 2, code: 'EX002', designation: 'Examen B', prix: '150', delai: '5' },
     { id: 3, code: 'EX003', designation: 'Examen C', prix: '200', delai: '3' },
   ];
 
+  // Filtered list based on search queries
+  const filteredExamens = examensList.filter(
+    (examen) =>
+      examen.code.toLowerCase().includes(searchQueries.codeSearch.toLowerCase()) &&
+      examen.designation.toLowerCase().includes(searchQueries.designationSearch.toLowerCase())
+  );
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSearchChange = (e) => {
+    const { name, value } = e.target;
+    setSearchQueries({
+      ...searchQueries,
       [name]: value,
     });
   };
@@ -78,8 +100,20 @@ const ExamenPage = () => {
           Liste des Examens
         </Typography>
         <Stack direction="row" spacing={2}>
-          <TextField label="Code" name="codeSearch" onChange={handleInputChange} size="small" />
-          <TextField label="Désignation" name="designationSearch" onChange={handleInputChange} size="small" />
+          <TextField
+            label="Code"
+            name="codeSearch"
+            value={searchQueries.codeSearch}
+            onChange={handleSearchChange}
+            size="small"
+          />
+          <TextField
+            label="Désignation"
+            name="designationSearch"
+            value={searchQueries.designationSearch}
+            onChange={handleSearchChange}
+            size="small"
+          />
           <IconButton
             color="primary"
             onClick={toggleForm}
@@ -119,7 +153,7 @@ const ExamenPage = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {examensList.map((examen) => (
+            {filteredExamens.map((examen) => (
               <TableRow key={examen.id}>
                 <TableCell>{examen.code}</TableCell>
                 <TableCell>{examen.designation}</TableCell>

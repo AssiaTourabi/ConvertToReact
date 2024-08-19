@@ -15,11 +15,15 @@ import { z as zod } from 'zod';
 
 import { authClient } from '@/lib/auth/client';
 
-const schema = zod.object({ email: zod.string().min(1, { message: 'Email is required' }).email() });
+// Update schema to include identifier
+const schema = zod.object({
+  identifier: zod.string().min(1, { message: 'Identifier is required' }),
+  email: zod.string().min(1, { message: 'Email is required' }).email(),
+});
 
 type Values = zod.infer<typeof schema>;
 
-const defaultValues = { email: '' } satisfies Values;
+const defaultValues = { identifier: '', email: '' } satisfies Values;
 
 export function ResetPasswordForm(): React.JSX.Element {
   const [isPending, setIsPending] = React.useState<boolean>(false);
@@ -52,9 +56,28 @@ export function ResetPasswordForm(): React.JSX.Element {
 
   return (
     <Stack spacing={4}>
-      <Typography variant="h5" sx={{      fontFamily: 'Lato, sans-serif',color: "#00008B", marginLeft:'25%',marginTop:'12%',fontSize:'20px'}}>Reset_Password</Typography>
+      <Typography
+        variant="h5"
+        sx={{ fontFamily: 'Lato, sans-serif', color: '#00008B', marginLeft: '25%', marginTop: '12%', fontSize: '20px' }}
+      >
+        Reset Password
+      </Typography>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Stack spacing={2} sx={{marginLeft:'25%'}}>
+        <Stack spacing={2} sx={{ marginLeft: '25%' }}>
+          {/* Add the identifier field */}
+          <Controller
+            control={control}
+            name="identifier"
+            render={({ field }) => (
+              <FormControl error={Boolean(errors.identifier)}>
+                <InputLabel>Identifiant</InputLabel>
+                <OutlinedInput {...field} label="Identifier" type="text" />
+                {errors.identifier ? <FormHelperText>{errors.identifier.message}</FormHelperText> : null}
+              </FormControl>
+            )}
+          />
+
+          {/* Email field */}
           <Controller
             control={control}
             name="email"
@@ -67,13 +90,18 @@ export function ResetPasswordForm(): React.JSX.Element {
             )}
           />
           {errors.root ? <Alert color="error">{errors.root.message}</Alert> : null}
-          <Button disabled={isPending} type="submit" variant="contained"   sx={{
+          <Button
+            disabled={isPending}
+            type="submit"
+            variant="contained"
+            sx={{
               backgroundColor: '#34c291',
               '&:hover': {
                 backgroundColor: '#378db7',
               },
-            }}>
-            Envoyer le lien de récupération
+            }}
+          >
+            Rénitialiser
           </Button>
         </Stack>
       </form>
