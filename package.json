@@ -22,6 +22,7 @@
     "@emotion/styled": "^11.11.5",
     "@fontsource/inter": "5.0.18",
     "@fontsource/plus-jakarta-sans": "5.0.20",
+    "@fontsource/poppins": "^5.0.15",
     "@fontsource/roboto-mono": "5.0.18",
     "@hookform/resolvers": "3.6.0",
     "@mui/icons-material": "^5.16.4",
@@ -62,10 +63,6 @@
     "jest-environment-jsdom": "29.7.0",
     "prettier": "3.3.2",
     "typescript": "5.5.2"
-  }, 
-
-
-    "proxy": "http://localhost:8080" 
-  
-  
+  },
+  "proxy": "http://localhost:8080"
 }

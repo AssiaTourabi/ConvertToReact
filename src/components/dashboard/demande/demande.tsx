@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { PictureAsPdf as PdfIcon, Save as SaveIcon } from '@mui/icons-material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
+import SearchIcon from '@mui/icons-material/Search';
 import {
   Box,
   Button,
@@ -16,12 +17,14 @@ import {
   FormControlLabel,
   FormLabel,
   Grid,
+  IconButton,
   InputLabel,
   MenuItem,
   Paper,
   Radio,
   RadioGroup,
   Select,
+  Tab,
   Table,
   TableBody,
   TableCell,
@@ -29,11 +32,21 @@ import {
   TableHead,
   TableRow,
   TableSortLabel,
+  Tabs,
   TextField,
   Typography,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+
+import '@fontsource/poppins'; // Import Poppins font for a modern look
+
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import DescriptionIcon from '@mui/icons-material/Description';
+import HomeIcon from '@mui/icons-material/Home'; // Importing icons for tabs
+
+import ReceiptIcon from '@mui/icons-material/Receipt';
+import SummarizeIcon from '@mui/icons-material/Summarize';
 
 interface DemandeDetailProps {
   refDemande: string;
@@ -106,7 +119,7 @@ const DemandePat: React.FC = () => {
   };
 
   return (
-    <StyledPaper>
+    <StyledPaper sx={{ bgcolor: 'transparent' }}>
       <Typography variant="h6" gutterBottom>
         Informations Patient
       </Typography>
@@ -259,7 +272,7 @@ const DemandeEx: React.FC = () => {
   };
 
   return (
-    <StyledPaper>
+    <StyledPaper sx={{ bgcolor: 'transparent' }}>
       <Typography variant="h6" gutterBottom>
         Ajout d'Examen
       </Typography>
@@ -340,6 +353,8 @@ const DemandeDetail: React.FC<DemandeDetailProps> = ({
   numPriseEnCharge,
   complement,
 }) => {
+  const [showSearch, setShowSearch] = useState(false);
+
   const handleSave = () => {
     console.log('Formulaire soumis avec les détails:', {
       refDemande,
@@ -355,74 +370,83 @@ const DemandeDetail: React.FC<DemandeDetailProps> = ({
     });
   };
 
-  return (
-    <Card variant="outlined" sx={{ maxWidth: 'md', mx: 'auto' }}>
-      <CardContent>
-        <Typography variant="h5" gutterBottom>
-          Détails de la Demande
-        </Typography>
-        <Divider sx={{ mb: 2 }} />
+  const handleSearchClick = () => {
+    setShowSearch(!showSearch);
+  };
 
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={6}>
-            <TextField label="Réf. Demande" value={refDemande} fullWidth variant="outlined" />
+  return (
+    <div>
+      <Card variant="outlined" sx={{ maxWidth: 'md', mx: 'auto', bgcolor: 'transparent' }}>
+        <CardContent>
+          <Box display="flex" justifyContent="space-between" alignItems="center">
+            <Typography variant="h5" gutterBottom>
+              Détails de la Demande
+            </Typography>
+            <IconButton onClick={handleSearchClick}>
+              <SearchIcon />
+            </IconButton>
+          </Box>
+          <Divider sx={{ mb: 2 }} />
+
+          {showSearch && <RechercheDemandes />}
+
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <TextField label="Réf. Demande" value={refDemande} fullWidth variant="outlined" />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField label="Réf. E. (Externe)" value={refDemandeExterne} fullWidth variant="outlined" />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField label="D.D (Date D)" value={dateD} fullWidth variant="outlined" />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField label="D.S (Date S)" value={dateS} fullWidth variant="outlined" />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField label="Org. (Organisme)" value={idOrganisme} fullWidth variant="outlined" />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <FormControlLabel control={<Checkbox checked={payeurDemande} />} label="Payeur Demande" />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField label="M.T." value={matriculeAffilie} fullWidth variant="outlined" />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField label="Matricule" value={matriculeAffilie} fullWidth variant="outlined" />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField label="Affiliation" value={matriculeAffilie} fullWidth variant="outlined" />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField label="Lien" value={lienParente} fullWidth variant="outlined" />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField label="PEC" value={numPriseEnCharge} fullWidth variant="outlined" />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField label="Complément" value={complement} fullWidth multiline rows={3} variant="outlined" />
+            </Grid>
+            <Grid item xs={12}>
+              <FormControl component="fieldset">
+                <RadioGroup row aria-labelledby="filter-by-status" name="filter-by-status">
+                  <FormControlLabel value="norm" control={<Radio />} label="Norm" />
+                  <FormControlLabel value="urg" control={<Radio />} label="Urg" />
+                  <FormControlLabel value="tuurg" control={<Radio />} label="T.Urg" />
+                </RadioGroup>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} textAlign="center">
+              <Box mt={2}>
+                <Button variant="contained" color="primary" onClick={handleSave}>
+                  Enregistrer
+                </Button>
+              </Box>
+            </Grid>
           </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField label="Réf. E. (Externe)" value={refDemandeExterne} fullWidth variant="outlined" />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField label="D.D (Date D)" value={dateD} fullWidth variant="outlined" />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField label="D.S (Date S)" value={dateS} fullWidth variant="outlined" />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField label="Org. (Organisme)" value={idOrganisme} fullWidth variant="outlined" />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <FormControlLabel
-              control={<Checkbox checked={payeurDemande} />}
-              label="Payeur Demande"
-              //value={payeurDemande.toString()}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField label="M.T." value={matriculeAffilie} fullWidth variant="outlined" />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField label="Matricule" value={matriculeAffilie} fullWidth variant="outlined" />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField label="Affiliation" value={matriculeAffilie} fullWidth variant="outlined" />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField label="Lien" value={lienParente} fullWidth variant="outlined" />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField label="PEC" value={numPriseEnCharge} fullWidth variant="outlined" />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField label="Complément" value={complement} fullWidth multiline rows={3} variant="outlined" />
-          </Grid>
-          <Grid item xs={12}>
-            <FormControl component="fieldset">
-              <RadioGroup row aria-labelledby="filter-by-status" name="filter-by-status">
-                <FormControlLabel value="norm" control={<Radio />} label="Norm" />
-                <FormControlLabel value="urg" control={<Radio />} label="Urg" />
-                <FormControlLabel value="tuurg" control={<Radio />} label="T.Urg" />
-              </RadioGroup>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} textAlign="center">
-            <Box mt={2}>
-              <Button variant="contained" color="primary" onClick={handleSave}>
-                Enregistrer
-              </Button>
-            </Box>
-          </Grid>
-        </Grid>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
+    </div>
   );
 };
 
@@ -461,7 +485,7 @@ const DocumentZone: React.FC = () => {
   };
 
   return (
-    <Paper sx={{ padding: 2, backgroundColor: '#FAEEFF', height: 500 }}>
+    <Paper sx={{ padding: 2, backgroundColor: 'transparent', height: 500 }}>
       <legend>
         <span id="typeDocument">Devis</span>
       </legend>
@@ -650,7 +674,7 @@ const RechercheDemandes = () => {
   };
 
   return (
-    <Paper sx={{ p: 2, bgcolor: '#EEEEFF', height: 'auto' }}>
+    <Paper sx={{ p: 2, height: 'auto', bgcolor: 'transparent' }}>
       <Typography variant="h6" gutterBottom>
         Recherche des demandes
       </Typography>
@@ -749,7 +773,7 @@ const RechercheDemandes = () => {
 
 const ComptesRendus = () => {
   return (
-    <Paper sx={{ p: 2, bgcolor: '##FAEEFF' }}>
+    <Paper sx={{ p: 2, bgcolor: 'transparent' }}>
       <Typography variant="h6" gutterBottom>
         Comptes Rendus
       </Typography>
@@ -802,10 +826,14 @@ const ActionButtons = () => {
 };
 
 const Demande: React.FC = () => {
-  const [activeComponent, setActiveComponent] = useState<string>('demandeDetail');
+  const [activeTab, setActiveTab] = useState<string>('demandePat');
+
+  const handleTabChange = (event: React.SyntheticEvent, newValue: string) => {
+    setActiveTab(newValue);
+  };
 
   const renderComponent = () => {
-    switch (activeComponent) {
+    switch (activeTab) {
       case 'demandePat':
         return <DemandePat />;
       case 'demandeEx':
@@ -822,43 +850,80 @@ const Demande: React.FC = () => {
   };
 
   return (
-    <Container>
-      <Box sx={{ textAlign: 'center', mb: 4 }}>
-        <Typography variant="h4">Page d'Accueil</Typography>
+    <Container sx={{ mt: 4, fontFamily: 'Poppins, sans-serif' }}>
+      <Box
+        sx={{
+          textAlign: 'center',
+          mb: 4,
+          py: 4,
+          background: 'linear-gradient(135deg, #2CBF89, #2C96BF)',
+          borderRadius: '12px',
+          boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
+          color: '#fff',
+          fontFamily: 'Poppins, sans-serif',
+        }}
+      >
+        <Typography variant="h4" sx={{ fontWeight: 'bold', letterSpacing: '0.05em' }}>
+          Bienvenue sur la Page d'Accueil
+        </Typography>
       </Box>
 
-      <Box sx={{ mb: 2 }}>
-        <Grid container spacing={2} justifyContent="center">
-          <Grid item>
-            <Button variant="contained" onClick={() => setActiveComponent('demandePat')}>
-              Patient
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button variant="contained" onClick={() => setActiveComponent('demandeEx')}>
-              Examen
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button variant="contained" onClick={() => setActiveComponent('DemandeDetail')}>
-              Demande
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button variant="contained" onClick={() => setActiveComponent('DocumentZone')}>
-              Devis
-            </Button>
-          </Grid>
-
-          <Grid item>
-            <Button variant="contained" onClick={() => setActiveComponent('ComptesRendus')}>
-              Comptes Rendus
-            </Button>
-          </Grid>
-        </Grid>
+      <Box
+        sx={{
+          borderBottom: 1,
+          borderColor: 'divider',
+          mb: 3,
+          borderRadius: '10px',
+          background: '#f5f5f5',
+          boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
+          overflow: 'hidden',
+        }}
+      >
+        <Tabs
+          value={activeTab}
+          onChange={handleTabChange}
+          centered
+          indicatorColor="primary"
+          textColor="primary"
+          sx={{
+            '& .MuiTab-root': {
+              fontWeight: '500',
+              transition: 'color 0.3s, transform 0.3s',
+              fontSize: '1rem',
+              '&:hover': {
+                color: '#000DFF',
+                transform: 'scale(1.1)',
+              },
+            },
+            '& .MuiTabs-indicator': {
+              height: '5px',
+              borderRadius: '5px',
+              backgroundColor: '#000DFF',
+            },
+          }}
+        >
+          <Tab icon={<HomeIcon />} label="Patient" value="demandePat" />
+          <Tab icon={<AssignmentIcon />} label="Examen" value="demandeEx" />
+          <Tab icon={<DescriptionIcon />} label="Demande" value="DemandeDetail" />
+          <Tab icon={<ReceiptIcon />} label="Devis" value="DocumentZone" />
+          <Tab icon={<SummarizeIcon />} label="Comptes Rendus" value="ComptesRendus" />
+        </Tabs>
       </Box>
 
-      <Box>{renderComponent()}</Box>
+      <Box
+        sx={{
+          bgcolor: 'white',
+          p: 4,
+          borderRadius: '15px',
+          boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.1)',
+          transition: 'all 0.3s',
+          '&:hover': {
+            boxShadow: '0px 6px 25px rgba(0, 0, 0, 0.2)',
+          },
+        }}
+      >
+        {renderComponent()}
+      </Box>
     </Container>
   );
 };
