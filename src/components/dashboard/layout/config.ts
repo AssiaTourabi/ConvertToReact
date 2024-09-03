@@ -48,14 +48,14 @@ export const navItems = [
   { key: 'error1', title: 'Réaffectation', href: '', icon: 'swap',
     items: [
       { key: 'subitem1', title: 'Demande', href: paths.dashboard.reaffectationDemande },
-      { key: 'subitem1', title: 'Facture', href: paths.dashboard.ajoutGroupe },
+      { key: 'subitem1', title: 'Facture', href: paths.dashboard.reaffectationFacture },
 
     ]
    },
   { key: 'utils', title: 'Outils', href: '', icon: 'wrench' ,
     items: [
       { key: 'subitem1', title: 'Gestion Factures', href: paths.dashboard.gestionFactures },
-      { key: 'subitem1', title: 'Facturation personalisée', href: paths.dashboard.facturationPersonnalise },
+      { key: 'subitem1', title: 'Facturation ', href: paths.dashboard.facturationPersonnalise },
       { key: 'subitem1', title: 'Recherche avancé', href: paths.dashboard.rechercheAvance },
       { key: 'subitem1', title: 'Fusion de medecins', href: paths.dashboard.fusionMedecin },
       { key: 'subitem1', title: 'Modifier Patient', href: paths.dashboard.modifierPatient },

@@ -48,7 +48,9 @@ export function Notifications(): React.JSX.Element {
         </CardContent>
         <Divider />
         <CardActions sx={{ justifyContent: 'flex-end' }}>
-          <Button variant="contained" sx={{backgroundColor:'black'}}>Sauvegarder les changements</Button>
+          <Button variant="contained" sx={{ backgroundColor: 'black' }}>
+            Sauvegarder les changements
+          </Button>
         </CardActions>
       </Card>
     </form>

@@ -32,7 +32,8 @@ export const paths = {
     reporting:'/dashboard/reporting',
     tableauBord:'/dashboard/tableauBord',
     demande:'/dashboard/demande',
-    tableIncoherence:'/dashboard/tableauIncoherence'
+    tableIncoherence:'/dashboard/tableauIncoherence',
+    reaffectationFacture:'/dashboard/reaffectationFacture'
     
     
   },

@@ -243,7 +243,7 @@ const AdvancedSearchForm = () => {
         </Box>
         <Box mt={3} textAlign="center">
           <Button variant="contained" color="primary" type="submit">
-            Recherche
+            Lister
           </Button>
         </Box>
       </form>

@@ -131,57 +131,6 @@ const ExamenPage = () => {
         </Stack>
       </Stack>
       <Divider sx={{ marginY: 2 }} />
-      <TableContainer>
-        <Table>
-          <TableHead>
-            <TableRow sx={{ backgroundColor: '#378db7', color: '#378db7' }}>
-              <TableCell>
-                <Typography variant="h6">Code</Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant="h6">Désignation</Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant="h6">Prix</Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant="h6">Délai</Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant="h6">Actions</Typography>
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {filteredExamens.map((examen) => (
-              <TableRow key={examen.id}>
-                <TableCell>{examen.code}</TableCell>
-                <TableCell>{examen.designation}</TableCell>
-                <TableCell>{examen.prix}</TableCell>
-                <TableCell>{examen.delai}</TableCell>
-                <TableCell>
-                  <Stack direction="row" spacing={1}>
-                    <Button onClick={() => handleEditExamen(examen.id)} variant="outlined" color="primary">
-                      <EditIcon />
-                    </Button>
-                    <Button onClick={() => handleDeleteExamen(examen.id)} variant="outlined" color="secondary">
-                      <DeleteIcon />
-                    </Button>
-                  </Stack>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <CardActions sx={{ justifyContent: 'center' }}>
-        <Button variant="contained" startIcon={<DownloadIcon />} sx={{ backgroundColor: '#61afd8' }}>
-          Télécharger la liste des examens
-        </Button>
-      </CardActions>
-      <Divider sx={{ marginY: 2 }} />
-
-      {/* Formulaire pour ajouter un examen */}
       {showForm && (
         <Box sx={{ marginTop: 4 }}>
           <Typography variant="h5" sx={{ marginBottom: 2 }}>
@@ -235,8 +184,61 @@ const ExamenPage = () => {
               </Button>
             </CardActions>
           </form>
+          <Divider sx={{ marginY: 2 }} />
         </Box>
       )}
+
+      <TableContainer>
+        <Table>
+          <TableHead>
+            <TableRow sx={{ backgroundColor: '#378db7', color: '#378db7' }}>
+              <TableCell>
+                <Typography variant="h6">Code</Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="h6">Désignation</Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="h6">Prix</Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="h6">Délai</Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="h6">Actions</Typography>
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {filteredExamens.map((examen) => (
+              <TableRow key={examen.id}>
+                <TableCell>{examen.code}</TableCell>
+                <TableCell>{examen.designation}</TableCell>
+                <TableCell>{examen.prix}</TableCell>
+                <TableCell>{examen.delai}</TableCell>
+                <TableCell>
+                  <Stack direction="row" spacing={1}>
+                    <Button onClick={() => handleEditExamen(examen.id)} variant="outlined" color="primary">
+                      <EditIcon />
+                    </Button>
+                    <Button onClick={() => handleDeleteExamen(examen.id)} variant="outlined" color="secondary">
+                      <DeleteIcon />
+                    </Button>
+                  </Stack>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <CardActions sx={{ justifyContent: 'center' }}>
+        <Button variant="contained" startIcon={<DownloadIcon />} sx={{ backgroundColor: '#61afd8' }}>
+          Télécharger la liste des examens
+        </Button>
+      </CardActions>
+      <Divider sx={{ marginY: 2 }} />
+
+      {/* Formulaire pour ajouter un examen */}
     </Box>
   );
 };

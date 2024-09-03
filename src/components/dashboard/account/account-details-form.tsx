@@ -62,14 +62,8 @@ export function AccountDetailsForm(): React.JSX.Element {
 
             <Grid md={6} xs={12}>
               <FormControl fullWidth>
-                <InputLabel>Etat</InputLabel>
-                <Select defaultValue="Actif" label="State" name="state" variant="outlined">
-                  {states.map((option) => (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.label}
-                    </MenuItem>
-                  ))}
-                </Select>
+                <InputLabel>Login</InputLabel>
+                <OutlinedInput defaultValue="Assia" label="Login" name="login" />
               </FormControl>
             </Grid>
             <Grid md={6} xs={12}>

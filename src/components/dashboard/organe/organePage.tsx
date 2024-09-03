@@ -118,42 +118,6 @@ const OrganePage = () => {
         </Stack>
       </Stack>
       <Divider sx={{ marginY: 2 }} />
-      <TableContainer>
-        <Table>
-          <TableHead>
-            <TableRow sx={{ backgroundColor: '#378db7', color: '#fff' }}>
-              <TableCell>
-                <Typography variant="h6">Code</Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant="h6">Organe</Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant="h6">Description</Typography>
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {paginatedOrganes.map((organe) => (
-              <TableRow key={organe.id}>
-                <TableCell>{organe.code}</TableCell>
-                <TableCell>{organe.nom}</TableCell>
-                <TableCell>{organe.description}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <CardActions sx={{ justifyContent: 'center', marginY: 2 }}>
-        <Pagination
-          count={Math.ceil(organes.length / pageSize)}
-          page={page}
-          onChange={handlePageChange}
-          size="large"
-          color="primary"
-        />
-      </CardActions>
-      <Divider sx={{ marginY: 2 }} />
 
       {/* Formulaire pour ajouter un organe */}
       {showForm && (
@@ -197,8 +161,45 @@ const OrganePage = () => {
               </Button>
             </CardActions>
           </form>
+          <Divider sx={{ marginY: 2 }} />
         </Box>
       )}
+      <TableContainer>
+        <Table>
+          <TableHead>
+            <TableRow sx={{ backgroundColor: '#378db7', color: '#fff' }}>
+              <TableCell>
+                <Typography variant="h6">Code</Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="h6">Organe</Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="h6">Description</Typography>
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {paginatedOrganes.map((organe) => (
+              <TableRow key={organe.id}>
+                <TableCell>{organe.code}</TableCell>
+                <TableCell>{organe.nom}</TableCell>
+                <TableCell>{organe.description}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <CardActions sx={{ justifyContent: 'center', marginY: 2 }}>
+        <Pagination
+          count={Math.ceil(organes.length / pageSize)}
+          page={page}
+          onChange={handlePageChange}
+          size="large"
+          color="primary"
+        />
+      </CardActions>
+      <Divider sx={{ marginY: 2 }} />
     </Box>
   );
 };

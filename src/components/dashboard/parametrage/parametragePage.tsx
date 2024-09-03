@@ -119,7 +119,7 @@ const ParametragePage = () => {
   return (
     <Box sx={{ maxWidth: 1200, margin: 'auto', padding: 2 }}>
       <Stack spacing={2} sx={{ marginBottom: 2 }}>
-        <Typography variant="h5">Listes des Organismes</Typography>
+        <Typography variant="h5">Facturation</Typography>
         <Stack direction="row" justifyContent="flex-end" spacing={2}>
           <TextField
             label="Recherche par Nom"

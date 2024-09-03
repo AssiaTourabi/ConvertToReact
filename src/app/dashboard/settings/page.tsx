@@ -15,7 +15,7 @@ export default function Page(): React.JSX.Element {
       <div>
         <Typography variant="h4">Paramétres</Typography>
       </div>
-      <Notifications />
+
       <UpdatePasswordForm />
     </Stack>
   );

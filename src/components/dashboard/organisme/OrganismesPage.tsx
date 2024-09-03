@@ -182,6 +182,76 @@ const OrganismesPage = () => {
         </Stack>
       </Stack>
       <Divider sx={{ marginY: 2 }} />
+      {showForm && (
+        <Box sx={{ padding: 4 }}>
+          <Typography variant="h5">Ajouter ou Modifier un Organisme</Typography>
+          <Box sx={{ padding: 3 }}>
+            <form onSubmit={handleSubmit}>
+              <Stack spacing={2}>
+                <TextField
+                  label="Nom"
+                  name="nom"
+                  value={formData.nom}
+                  onChange={handleInputChange}
+                  size="small"
+                  required
+                />
+                <TextField
+                  label="Remise"
+                  name="remise"
+                  value={formData.remise}
+                  onChange={handleInputChange}
+                  size="small"
+                  required
+                />
+                <TextField
+                  label="Téléphone"
+                  name="tel"
+                  value={formData.tel}
+                  onChange={handleInputChange}
+                  size="small"
+                  required
+                />
+                <TextField
+                  label="Email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  size="small"
+                  required
+                />
+                <Stack direction="row" spacing={2}>
+                  <FormControl size="small" sx={{ flexGrow: 1 }}>
+                    <InputLabel>Type</InputLabel>
+                    <Select name="type" value={formData.type} onChange={handleInputChange} label="Type" required>
+                      <MenuItem value="Organisme A">Organisme A</MenuItem>
+                      <MenuItem value="Organisme B">Organisme B</MenuItem>
+                    </Select>
+                  </FormControl>
+                  <FormControl size="small" sx={{ flexGrow: 1 }}>
+                    <InputLabel>Modèle de facture</InputLabel>
+                    <Select
+                      name="modeleFacture"
+                      value={formData.modeleFacture}
+                      onChange={handleInputChange}
+                      label="Modèle de facture"
+                      required
+                    >
+                      <MenuItem value="CNOPS">CNOPS</MenuItem>
+                      <MenuItem value="Par défaut">Par défaut</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Stack>
+                <Button type="submit" variant="contained" color="primary">
+                  Enregistrer
+                </Button>
+              </Stack>
+            </form>
+          </Box>
+          <Divider sx={{ marginY: 2 }} />
+        </Box>
+      )}
+
       {showFavoris && (
         <Box sx={{ marginY: 2 }}>
           <Typography variant="h6">Favoris</Typography>
@@ -320,74 +390,6 @@ const OrganismesPage = () => {
         </Table>
       </TableContainer>
       <Divider sx={{ marginY: 2 }} />
-      {showForm && (
-        <Box sx={{ padding: 4 }}>
-          <Typography variant="h5">Ajouter ou Modifier un Organisme</Typography>
-          <Box sx={{ padding: 3 }}>
-            <form onSubmit={handleSubmit}>
-              <Stack spacing={2}>
-                <TextField
-                  label="Nom"
-                  name="nom"
-                  value={formData.nom}
-                  onChange={handleInputChange}
-                  size="small"
-                  required
-                />
-                <TextField
-                  label="Remise"
-                  name="remise"
-                  value={formData.remise}
-                  onChange={handleInputChange}
-                  size="small"
-                  required
-                />
-                <TextField
-                  label="Téléphone"
-                  name="tel"
-                  value={formData.tel}
-                  onChange={handleInputChange}
-                  size="small"
-                  required
-                />
-                <TextField
-                  label="Email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  size="small"
-                  required
-                />
-                <Stack direction="row" spacing={2}>
-                  <FormControl size="small" sx={{ flexGrow: 1 }}>
-                    <InputLabel>Type</InputLabel>
-                    <Select name="type" value={formData.type} onChange={handleInputChange} label="Type" required>
-                      <MenuItem value="Organisme A">Organisme A</MenuItem>
-                      <MenuItem value="Organisme B">Organisme B</MenuItem>
-                    </Select>
-                  </FormControl>
-                  <FormControl size="small" sx={{ flexGrow: 1 }}>
-                    <InputLabel>Modèle de facture</InputLabel>
-                    <Select
-                      name="modeleFacture"
-                      value={formData.modeleFacture}
-                      onChange={handleInputChange}
-                      label="Modèle de facture"
-                      required
-                    >
-                      <MenuItem value="CNOPS">CNOPS</MenuItem>
-                      <MenuItem value="Par défaut">Par défaut</MenuItem>
-                    </Select>
-                  </FormControl>
-                </Stack>
-                <Button type="submit" variant="contained" color="primary">
-                  Enregistrer
-                </Button>
-              </Stack>
-            </form>
-          </Box>
-        </Box>
-      )}
     </Box>
   );
 };

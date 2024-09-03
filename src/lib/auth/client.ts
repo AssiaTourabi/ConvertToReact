@@ -13,7 +13,7 @@ const user = {
   avatar: '/assets/avatar.png',
   firstName: 'Assia',
   lastName: 'Tourabi',
-  identifiant: 'assiatourabi55@gmail.com',
+  identifiant: 'assiatourabi',
 } satisfies User;
 
 export interface SignUpParams {
@@ -53,7 +53,7 @@ class AuthClient {
     const { identifiant, password } = params;
 
  
-    if (identifiant !== 'assiatourabi55@gmail.com' || password !== 'assia') {
+    if (identifiant !== 'assiatourabi' || password !== 'assia') {
       return { error: 'Invalid credentials' };
     }
 

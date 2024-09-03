@@ -1,15 +1,9 @@
 {
   "pages": {
-    "/dashboard/demande/page": [
+    "/auth/sign-in/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/dashboard/demande/page.css",
-      "static/chunks/app/dashboard/demande/page.js"
-    ],
-    "/dashboard/layout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/dashboard/layout.js"
+      "static/chunks/app/auth/sign-in/page.js"
     ],
     "/layout": [
       "static/chunks/webpack.js",
@@ -21,6 +15,132 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
+    ],
+    "/dashboard/demande/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/dashboard/demande/page.css",
+      "static/chunks/app/dashboard/demande/page.js"
+    ],
+    "/dashboard/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/layout.js"
+    ],
+    "/dashboard/gestioncr/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/gestioncr/page.js"
+    ],
+    "/_not-found/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/_not-found/page.js"
+    ],
+    "/dashboard/ajoutGroupe/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/ajoutGroupe/page.js"
+    ],
+    "/dashboard/statistiqueCR/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/statistiqueCR/page.js"
+    ],
+    "/dashboard/examen/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/examen/page.js"
+    ],
+    "/dashboard/organisme/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/organisme/page.js"
+    ],
+    "/dashboard/organe/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/organe/page.js"
+    ],
+    "/dashboard/lesion/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/lesion/page.js"
+    ],
+    "/dashboard/activite/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/activite/page.js"
+    ],
+    "/dashboard/comptabilite/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/comptabilite/page.js"
+    ],
+    "/dashboard/tableauIncoherence/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/tableauIncoherence/page.js"
+    ],
+    "/dashboard/reporting/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/reporting/page.js"
+    ],
+    "/dashboard/tableauBord/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/tableauBord/page.js"
+    ],
+    "/dashboard/gestionCompte/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/gestionCompte/page.js"
+    ],
+    "/dashboard/acces/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/acces/page.js"
+    ],
+    "/dashboard/parametrage/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/parametrage/page.js"
+    ],
+    "/dashboard/ReaffectationDemande/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/ReaffectationDemande/page.js"
+    ],
+    "/dashboard/reaffectationFacture/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/reaffectationFacture/page.js"
+    ],
+    "/dashboard/gestionFacture/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/gestionFacture/page.js"
+    ],
+    "/dashboard/facturationPersonnalise/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/facturationPersonnalise/page.js"
+    ],
+    "/dashboard/rechercheAvance/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/rechercheAvance/page.js"
+    ],
+    "/dashboard/rechercheAvanceMedecin/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/rechercheAvanceMedecin/page.js"
+    ],
+    "/dashboard/modifierPatient/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/modifierPatient/page.js"
     ]
   }
 }
